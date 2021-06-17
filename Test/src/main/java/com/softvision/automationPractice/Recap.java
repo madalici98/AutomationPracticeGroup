@@ -1,10 +1,10 @@
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+package com.softvision.automationPractice;
 
-public class TestClass {
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Scanner;
 
+public class Recap {
     /*
     - Write a program called CheckOddEven which prints "Odd Number" if the int variable “number” is odd, or “Even Number”
     otherwise. The program shall always print “bye!” before exiting.
@@ -53,12 +53,10 @@ Deadline: Wednesday June 9, 12:00
 
         // compute the sum 1 + 2 + ... + maxNumber
         System.out.println(maxNumber * (maxNumber + 1) / 2);
-        System.out.println(maxNumber / 2);
+        System.out.println((double) maxNumber / 2);
     }
 
     public static boolean hasAllUniqueChars(String s) {
-
-        //return s.length() == Stream.of(s.chars()).distinct().count();
 
         return s.length() == s.chars().asDoubleStream().distinct().count();
     }
@@ -110,7 +108,7 @@ Deadline: Wednesday June 9, 12:00
         return reversed;
     }
 
-    public static int[] removeOccurence (int[] array, int toEliminate) {
+    public static int[] removeOccurence(int[] array, int toEliminate) {
 
         return Arrays.stream(array).filter(i -> i != toEliminate).toArray();
     }
@@ -125,7 +123,7 @@ Deadline: Wednesday June 9, 12:00
         int digits = 0;
         String allVowels = "aeiou";
 
-        for (int i = 0; i < s.length(); ++i ) {
+        for (int i = 0; i < s.length(); ++i) {
             if (Character.isDigit(s.charAt(i))) {
                 digits++;
             } else if (allVowels.contains("" + s.charAt(i))) {
@@ -155,7 +153,7 @@ Deadline: Wednesday June 9, 12:00
         newArray[position] = value;
 
         for (i = position + 1; i < newArray.length; ++i) {
-            newArray[i] = array[i-1];
+            newArray[i] = array[i - 1];
         }
 
         return newArray;
@@ -183,65 +181,27 @@ Deadline: Wednesday June 9, 12:00
         System.out.println(max);
 
 
-        return  ((double) sum - min - max) / (array.length - 2);
+        return ((double) sum - min - max) / (array.length - 2);
     }
 
     public static int[] bubbleSort(int[] array) {
 
-        int i, j, aux;
-        boolean sorted = false;
+        int i, aux;
+        boolean swapped;
 
-        while(!sorted) {
-
-            sorted = true;
-
+        do {
+            swapped = false;
             for (i = 0; i < array.length - 1; ++i) {
-                for (j = i + 1; j < array.length; ++j) {
-
-                    if (array[i] > array[j]) {
-                        sorted = false;
-                        aux = array[i];
-                        array[i] = array[j];
-                        array[j] = aux;
-                    }
+                if (array[i] > array[i + 1]) {
+                    swapped = true;
+                    aux = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = aux;
                 }
             }
-        }
+
+        } while (swapped);
 
         return array;
-    }
-
-
-    public static void main(String[] args) {
-
-        //checkOddEven(10);
-        //sumAverageInt(100);
-        //System.out.println(hasAllUniqueChars("oaie1233"));
-        //sumProductMinMax();
-        //System.out.println(reverseInteger());
-
-//        int[] array = IntStream.of(1, 2, 3, 4, 5, 6, 6, 7, 8).toArray();
-//        int[] newArray = removeOccurence(array, 6);
-//        for (int i: newArray) {
-//            System.out.println(i);
-//        }
-
-//        int[] array = IntStream.of(1, 2, 3, 4, 5, 6, 6, 7, 8).toArray();
-//        System.out.println(averageWithoutMinMax(array));
-
-//        int[] array = IntStream.of(1, 2, 3, 4, 5, 6, 6, 7, 8).toArray();
-//        int[] newArray = addArrayElementOnPosition(array, 7, 66);
-//        for (int i: newArray) {
-//            System.out.println(i);
-//        }
-
-//        int[] array = IntStream.of(1,2,4,3).toArray();
-//        int[] newArray = bubbleSort(array);
-//        for (int i: newArray) {
-//            System.out.println(i);
-//        }
-
-        //countVowelsDigits();
-
     }
 }
