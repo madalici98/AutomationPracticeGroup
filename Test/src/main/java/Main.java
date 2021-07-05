@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.stream.IntStream;
@@ -40,6 +41,15 @@ public class Main {
         /*********************************** Arrays ********************************************/
 
         int[] primitiveArray = IntStream.of(4, 3, 2, 1, 0).toArray();
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        stringArrayList.add("ana");
+        stringArrayList.add("are");
+        stringArrayList.add("mere");
+        printArrayList(stringArrayList);
+        ArrayList<Double> doubleArrayList = new ArrayList<>();
+        doubleArrayList.add(new Double("200000000000000000"));
+        doubleArrayList.add(new Double("1.123466786544677"));
+        printArrayList(doubleArrayList);
 
         // 1
 //        int[] sortedArray = sortPrimitiveArray(primitiveArray);
@@ -84,20 +94,20 @@ public class Main {
 //        arrayList = buildList(7,4,4,4,4,4,4,4,5,6,7,8);
 //        printArrayList(arrayList);
 
-        // 10
-        LinkedList<Integer> list1 = new LinkedList<>();
-        list1.add(1);
-        list1.add(4);
-        list1.add(5);
-        LinkedList<Integer> list2 = new LinkedList<>();
-        list2.add(2);
-        list2.add(3);
-        list2.add(6);
-        list2.add(7);
-
-        LinkedList<Integer> linkedList = swapEveryTwoElements(list2);
-        Iterator<Integer> listIterator = linkedList.iterator();
-        listIterator.forEachRemaining(x -> System.out.println(x));
+//        // 10
+//        LinkedList<Integer> list1 = new LinkedList<>();
+//        list1.add(1);
+//        list1.add(4);
+//        list1.add(5);
+//        LinkedList<Integer> list2 = new LinkedList<>();
+//        list2.add(2);
+//        list2.add(3);
+//        list2.add(6);
+//        list2.add(7);
+//
+//        LinkedList<Integer> linkedList = swapEveryTwoElements(list2);
+//        Iterator<Integer> listIterator = linkedList.iterator();
+//        listIterator.forEachRemaining(x -> System.out.println(x));
 
         // 11
 //        LinkedList<Integer> linkedList = mergeSortedLists(list1, list2);

@@ -44,9 +44,9 @@ public class ArraysExercises {
     }
 
     /*** 4. Write a Java program to iterate through all elements in a array list and print them. ***/
-    public static void printArrayList(ArrayList<Integer> arrayList) {
+    public static void printArrayList(ArrayList<?> arrayList) {
 
-        for (Integer i : arrayList) {
+        for (var i : arrayList) {
             System.out.println(i);
         }
     }
