@@ -2,14 +2,11 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import utils.Driver;
+import com.softvision.automationPractice.utils.Driver;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.testng.Assert.*;

@@ -1,27 +1,26 @@
 package tests;
 
+import com.softvision.automationPractice.pageObject.HomePage;
+import com.softvision.automationPractice.pageObject.ItemDetailsPage;
+import com.softvision.automationPractice.pageObject.SearchResultPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import utils.Driver;
+import com.softvision.automationPractice.utils.Driver;
 
-import javax.swing.*;
 import java.util.List;
 
-public class FirstTest {
+public class OnlineShopTest extends TestBase {
 
-    public static Driver driver = null;
-
-    @Test
-    public void firstTest() {
-        driver = Driver.getInstance();
-        driver.navigate();
-        driver.exit();
-    }
+    protected HomePage homePage;
+    protected SearchResultPage searchResultPage;
+    protected ItemDetailsPage itemDetailsPage;
 
     /* What I found dificult/confusing:
         - XPaths for selecting the item in the search result page
@@ -126,6 +125,29 @@ public class FirstTest {
     }
 
     @Test
+    public void addToCartFromItemPagePOMTest() {
+
+        String url = "http://automationpractice.com";
+        driver.navigate(url);
+
+        homePage = new HomePage(driver);
+        driver.waitForElement(homePage.searchBoxLocator);
+
+        homePage.searchForItem("dress");
+
+        searchResultPage = new SearchResultPage(driver);
+        searchResultPage.waitForThePageToLoad(searchResultPage.foundItemsListElementsLocator);
+
+        searchResultPage.clickOnNthSearchResultItem(1);
+
+        itemDetailsPage = new ItemDetailsPage(driver);
+        itemDetailsPage.waitForThePageToLoad(itemDetailsPage.addToCartButtonLocator);
+        itemDetailsPage.addItemToCart();
+        driver.waitForElement(itemDetailsPage.proceedToCheckoutButtonLocator, "The item could not be " +
+                "added to cart");
+    }
+
+    @Test
     public void changeSizeAndColorTest() {
 
         String url = "http://automationpractice.com";
@@ -161,7 +183,7 @@ public class FirstTest {
         sizeSelector.selectByVisibleText("L");
 
         WebElement colorSelector = driver.webDriver.findElement(colorSelectorLocator);
-        WebElement selectedColor = colorSelector.findElement(By.xpath("//li[@class != 'selected']"));
+        WebElement selectedColor = colorSelector.findElement(By.xpath("//li[@class != 'selected']/a"));
         selectedColor.click();
 
         driver.waitForElement(addToCartButtonLocator);
@@ -171,8 +193,5 @@ public class FirstTest {
 
     }
 
-    @AfterTest
-    public void tearDown() {
-        driver.webDriver.quit();
-    }
+
 }

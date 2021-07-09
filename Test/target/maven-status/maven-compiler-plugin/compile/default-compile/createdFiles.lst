@@ -1,3 +1,6 @@
 Main.class
-com/softvision/automationPractice/Recap.class
+com/softvision/automationPractice/utils/Driver.class
 com/softvision/automationPractice/ArraysExercises.class
+com/softvision/automationPractice/pageObject/BasePage.class
+com/softvision/automationPractice/Recap.class
+com/softvision/automationPractice/pageObject/HomePage.class

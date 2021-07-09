@@ -1,12 +1,14 @@
-package utils;
+package com.softvision.automationPractice.utils;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -18,7 +20,7 @@ public class Driver {
     private Driver() {
 
         setNewDriver();
-        wait = new WebDriverWait(webDriver, 10);
+        wait = new WebDriverWait(webDriver, 20);
     }
 
     public static  Driver getInstance(){
@@ -39,11 +41,11 @@ public class Driver {
 
         }
         finally {
-            webDriver= null;
+
+            System.setProperty("webdriver.chrome.driver","/Users/madalina.pietreanu/IdeaProjects/AutomationPracticeGroup/Test/src/chromedriver");
+            webDriver = new ChromeDriver();
+            webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         }
-        System.setProperty("webdriver.chrome.driver","/Users/madalina.pietreanu/IdeaProjects/AutomationPracticeGroup/Test/src/chromedriver");
-        webDriver = new ChromeDriver();
-        webDriver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     }
 
     public void exit() {
@@ -60,16 +62,26 @@ public class Driver {
         }
     }
 
-    public void navigate(){
-        webDriver.get("https://www.google.ro/");
-    }
-
     public void navigate(String url) {
         webDriver.get(url);
     }
 
-    public void waitForElement(By webElementLocator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(webElementLocator));
+    public void waitForElement(By webElementLocator, String... message) {
+
+        String messageToDisplay;
+
+        if (message.length > 0) {
+            messageToDisplay = Arrays.stream(message).toList().get(0);
+        } else {
+            messageToDisplay = "The element does not exist";
+        }
+
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(webElementLocator));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assert.assertTrue(1 == 2, messageToDisplay);
+        }
     }
 
 }
