@@ -2,10 +2,8 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-import com.softvision.automationPractice.utils.Driver;
+import org.testng.annotations.*;
+import utils.Driver;
 
 import java.util.List;
 
@@ -15,20 +13,20 @@ public class SelectorsExtraHomeworkTest {
 
     public static Driver driver = null;
 
-    @BeforeTest
+    @BeforeClass
     public static void init() {
         driver = Driver.getInstance();
         driver.webDriver.manage().window().maximize();
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.webDriver.quit();
     }
 
     // i need to configure testng xml to pass a parameter for the test
     @Test
-    public static void selectCheckBoxOptionByParameterTest(String option) {
+    public static void selectCheckBoxOptionByParameterTest() {
 
         String url = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
         driver.navigate(url);
@@ -46,7 +44,7 @@ public class SelectorsExtraHomeworkTest {
         By checkAllButtonSelector = By.id("check1");
         By selectionCheckerButtonSelector = By.id("isChkd");
 
-        driver.waitForElement(checkAllButtonSelector);
+        driver.waitForElementToLoad(checkAllButtonSelector);
         driver.webDriver.findElement(checkAllButtonSelector).click();
 
         WebElement selectionCheckerButton = driver.webDriver.findElement(selectionCheckerButtonSelector);
@@ -76,7 +74,7 @@ public class SelectorsExtraHomeworkTest {
         String url = "https://www.seleniumeasy.com/test/table-search-filter-demo.html";
         driver.navigate(url);
 
-        driver.waitForElement(tableDataRowsSelector);
+        driver.waitForElementToLoad(tableDataRowsSelector);
         List<WebElement> tableDataRows = driver.webDriver.findElements(tableDataRowsSelector);
 
         assertEquals(tableDataRows.size(), 12);
@@ -92,7 +90,7 @@ public class SelectorsExtraHomeworkTest {
         String url = "https://www.seleniumeasy.com/test/table-search-filter-demo.html";
         driver.navigate(url);
 
-        driver.waitForElement(filterButtonSelector);
+        driver.waitForElementToLoad(filterButtonSelector);
         WebElement filterButton = driver.webDriver.findElement(filterButtonSelector);
 
         List<WebElement> tableFilters = driver.webDriver.findElements(tableFiltersSelector);
@@ -119,12 +117,12 @@ public class SelectorsExtraHomeworkTest {
         String url = "https://www.seleniumeasy.com/test/bootstrap-modal-demo.html";
         driver.navigate(url);
 
-        driver.waitForElement(singleModalButtonLocator);
+        driver.waitForElementToLoad(singleModalButtonLocator);
 
         WebElement singleModalButton = driver.webDriver.findElement(singleModalButtonLocator);
         singleModalButton.click();
 
-        driver.waitForElement(singleModalXClosingButtonLocator);
+        driver.waitForElementToLoad(singleModalXClosingButtonLocator);
         WebElement singleModalXClosingButton = driver.webDriver.findElement(singleModalXClosingButtonLocator);
         singleModalXClosingButton.click();
 
@@ -143,7 +141,7 @@ public class SelectorsExtraHomeworkTest {
         String url = "https://www.seleniumeasy.com/test/jquery-dual-list-box-demo.html";
         driver.navigate(url);
 
-        driver.waitForElement(dataSelectOptionsLocator);
+        driver.waitForElementToLoad(dataSelectOptionsLocator);
         List<WebElement> dataSelectOptions = driver.webDriver.findElements(dataSelectOptionsLocator);
         int dataSelectOptionsNumber = dataSelectOptions.size();
 

@@ -1,9 +1,8 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.stream.IntStream;
+import com.softvision.programmingPractice.oopPractice.Employee;
+import com.softvision.programmingPractice.oopPractice.addressExercise.Address;
+import com.softvision.programmingPractice.oopPractice.addressExercise.Person;
 
-import static com.softvision.automationPractice.ArraysExercises.*;
+import java.util.HashMap;
 
 public class Main {
 
@@ -40,16 +39,16 @@ public class Main {
 
         /*********************************** Arrays ********************************************/
 
-        int[] primitiveArray = IntStream.of(4, 3, 2, 1, 0).toArray();
-        ArrayList<String> stringArrayList = new ArrayList<>();
-        stringArrayList.add("ana");
-        stringArrayList.add("are");
-        stringArrayList.add("mere");
-        printArrayList(stringArrayList);
-        ArrayList<Double> doubleArrayList = new ArrayList<>();
-        doubleArrayList.add(new Double("200000000000000000"));
-        doubleArrayList.add(new Double("1.123466786544677"));
-        printArrayList(doubleArrayList);
+//        int[] primitiveArray = IntStream.of(4, 3, 2, 1, 0).toArray();
+//        ArrayList<String> stringArrayList = new ArrayList<>();
+//        stringArrayList.add("ana");
+//        stringArrayList.add("are");
+//        stringArrayList.add("mere");
+//        printArrayList(stringArrayList);
+//        ArrayList<Double> doubleArrayList = new ArrayList<>();
+//        doubleArrayList.add(new Double("200000000000000000"));
+//        doubleArrayList.add(new Double("1.123466786544677"));
+//        printArrayList(doubleArrayList);
 
         // 1
 //        int[] sortedArray = sortPrimitiveArray(primitiveArray);
@@ -116,6 +115,32 @@ public class Main {
 
         // 12
 //        mapDemonstration();
+
+//        Employee bob = new Employee("Bob", "Smith", 4500.5);
+//        Employee alice = new Employee("Alice", "Brown", 6200.0);
+//
+//        bob.displayYearlySalary();
+//        alice.displayYearlySalary();
+//
+//        bob.applyRaise(10);
+//        alice.applyRaise(10);
+//
+//        bob.displayYearlySalary();
+//        alice.displayYearlySalary();
+
+        Address address1 = new Address("Street 1", 1);
+        Person person1 = new Person("Bob Smith", 30, address1);
+
+        HashMap<Person, Integer> personHashMap = new HashMap<>();
+        personHashMap.put(person1, 1);
+
+        System.out.println(personHashMap.get(person1));
+
+        Person person2 = new Person("Bob Smith", 30, address1);
+
+        personHashMap.put(person2, 2);
+
+        System.out.println(personHashMap.get(person2));
 
     }
 }
